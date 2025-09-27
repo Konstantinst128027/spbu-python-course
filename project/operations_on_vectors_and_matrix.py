@@ -70,7 +70,8 @@ def angle_between_vectors(
         raise ValueError("the vectors should not be null")
 
     cos_angle = dot / (length1 * length2)
-    # Обеспечиваем, чтобы значение было в допустимом диапазоне для arccos
+    
+    # Ensuring that the value is within the valid range for arccos
     cos_angle = max(-1.0, min(1.0, cos_angle))
 
     return math.acos(cos_angle)
