@@ -2,7 +2,9 @@ from typing import List, Union, Any
 import math
 
 # This function produces a scalar product of two vectors
-def dot_product(vector1: List[Union[int, float]], vector2: List[Union[int, float]]) -> Union[int, float]:
+def dot_product(
+    vector1: List[Union[int, float]], vector2: List[Union[int, float]]
+) -> Union[int, float]:
     if len(vector1) != len(vector2):
         raise ValueError("The vectors must be the same length.")
     return sum(x * y for x, y in zip(vector1, vector2))
@@ -14,7 +16,9 @@ def vector_length(vector: List[Union[int, float]]) -> float:
 
 
 # This function finds the angle between two vectors
-def angle_between_vectors(vector1: List[Union[int, float]], vector2: List[Union[int, float]]) -> float:
+def angle_between_vectors(
+    vector1: List[Union[int, float]], vector2: List[Union[int, float]]
+) -> float:
     if len(vector1) != len(vector2):
         raise ValueError("The vectors must be the same length.")
 

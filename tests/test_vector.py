@@ -2,9 +2,10 @@ import pytest
 import math
 import project.vectors as vt
 
+
 class Test_Vector_Operations:
     def test_dot_product(self):
-        
+
         assert vt.dot_product([1, 2, 3], [4, 5, 6]) == 32
 
         assert vt.dot_product([0, 0], [0, 0]) == 0
@@ -32,7 +33,9 @@ class Test_Vector_Operations:
 
         assert vt.angle_between_vectors([1, 0], [0, 1]) == pytest.approx(math.pi / 2)
 
-        assert vt.angle_between_vectors([1, 0, 0], [0, 1, 0]) == pytest.approx(math.pi / 2)
+        assert vt.angle_between_vectors([1, 0, 0], [0, 1, 0]) == pytest.approx(
+            math.pi / 2
+        )
 
         with pytest.raises(ValueError):
             vt.angle_between_vectors([0, 0], [1, 2])  # nool vector
