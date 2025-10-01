@@ -6,8 +6,17 @@ def matrix_addition(
     matrix1: List[List[Union[int, float]]], matrix2: List[List[Union[int, float]]]
 ) -> List[List[Union[int, float]]]:
 
-    """two matrices consisting of elements of type int and float are input,
-    and the output is a matrix of the addition of two matrices (element-by-element addition)"""
+    """
+    Args:
+        param1: First matrix, which consists of elements of type int or float (list of lists)
+        param2: Second matrix, which consists of elements of type int or float (list of lists)
+
+    Returns:
+        matrix that consists of elements obtained by adding the elements of the first and second matrices (list of lists)
+
+    Raises:
+        ValueError: if the two matrices have different sizes or if the row sizes are different
+    """
 
     if len(matrix1) != len(matrix2) or any(
         len(row1) != len(row2) for row1, row2 in zip(matrix1, matrix2)
@@ -21,8 +30,17 @@ def matrix_addition(
 def matrix_multiplication(
     matrix1: List[List[Union[int, float]]], matrix2: List[List[Union[int, float]]]
 ) -> List[List[Union[int, float]]]:
-    """this function takes two matrices as input and
-    returns a matrix of the product of the two matrices"""
+    """
+    Args:
+        param1: First matrix, which consists of elements of type int or float (list of lists)
+        param2: Second matrix, which consists of elements of type int or float (list of lists)
+
+    Returns:
+        matrix of the product of two matrices
+
+    Raises:
+        ValueError: if the row length of the first matrix is not equal to the column length of the other matrix
+    """
 
     if len(matrix1[0]) != len(matrix2):
         raise ValueError(
@@ -42,4 +60,12 @@ def matrix_multiplication(
 
 # This function transpose matrix
 def matrix_transpose(matrix: List[List[Any]]) -> List[List[Any]]:
+    """
+    Args:
+        param1: First matrix, which consists of elements (list of lists)
+        param2: Second matrix, which consists of elements (list of lists)
+
+    Returns:
+        transported matrix
+    """
     return [list(row) for row in zip(*matrix)]  # '*' - unpacks the matrix
