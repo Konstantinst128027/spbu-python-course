@@ -2,10 +2,12 @@ from typing import List, Union, Any
 import math
 
 # This function add matrix1 and matrix2
-# two matrices consisting of elements of type int and float are input, and the output is a matrix of the addition of two matrices (element-by-element addition)
 def matrix_addition(
     matrix1: List[List[Union[int, float]]], matrix2: List[List[Union[int, float]]]
 ) -> List[List[Union[int, float]]]:
+
+    """two matrices consisting of elements of type int and float are input,
+    and the output is a matrix of the addition of two matrices (element-by-element addition)"""
 
     if len(matrix1) != len(matrix2) or any(
         len(row1) != len(row2) for row1, row2 in zip(matrix1, matrix2)
@@ -19,6 +21,8 @@ def matrix_addition(
 def matrix_multiplication(
     matrix1: List[List[Union[int, float]]], matrix2: List[List[Union[int, float]]]
 ) -> List[List[Union[int, float]]]:
+    """this function takes two matrices as input and
+    returns a matrix of the product of the two matrices"""
 
     if len(matrix1[0]) != len(matrix2):
         raise ValueError(
