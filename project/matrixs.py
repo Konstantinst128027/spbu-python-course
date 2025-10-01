@@ -2,6 +2,7 @@ from typing import List, Union, Any
 import math
 
 # This function add matrix1 and matrix2
+# two matrices consisting of elements of type int and float are input, and the output is a matrix of the addition of two matrices (element-by-element addition)
 def matrix_addition(
     matrix1: List[List[Union[int, float]]], matrix2: List[List[Union[int, float]]]
 ) -> List[List[Union[int, float]]]:

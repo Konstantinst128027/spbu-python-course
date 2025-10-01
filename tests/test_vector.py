@@ -12,7 +12,7 @@ class Test_Vector_Operations:
 
         assert vt.dot_product([-1, 2], [3, -4]) == -11
 
-        assert abs(vt.dot_product([0.1, 0.2], [0.3, 0.4]) - 0.11) < 0.0001
+        assert math.isclose(abs(vt.dot_product([0.1, 0.2], [0.3, 0.4])), 0.11)
 
         with pytest.raises(ValueError):
             vt.dot_product([1, 2], [1, 2, 3])  # different lenght
@@ -25,7 +25,7 @@ class Test_Vector_Operations:
 
         assert vt.vector_length([-3, -4]) == 5.0
 
-        assert abs(vt.vector_length([1, 2, 2]) - 3.0) < 0.0001
+        assert math.isclose(vt.vector_length([1, 2, 2]), 3.0)
 
     def test_angle_between_vectors(self):
 
