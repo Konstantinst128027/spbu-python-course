@@ -1,6 +1,6 @@
 import pytest
 import math
-import project.vectors as vt
+import project.Task1.vectors as vt
 
 
 class Test_Vector_Operations:
