@@ -1,10 +1,15 @@
-from typing import (Any, Generator, Iterable, List, Union, Dict, Callable, Iterator)
+from typing import Any, Generator, Iterable, List, Union, Dict, Callable, Iterator
 from functools import reduce
 
+
 def data_generator(
-    data_source: Union[List[Any], Generator[Any, None, None], range, Iterable[Any]] # Iterable - objects that can be traversed element by element
-) -> Generator[Any, None, None]: # Arg_2 - what type can be added , Arg_3 - what type can be returned
-    
+    data_source: Union[
+        List[Any], Generator[Any, None, None], range, Iterable[Any]
+    ]  # Iterable - objects that can be traversed element by element
+) -> Generator[
+    Any, None, None
+]:  # Arg_2 - what type can be added , Arg_3 - what type can be returned
+
     """
     Generator for input data generation.
     Args:
@@ -12,7 +17,7 @@ def data_generator(
     Yields:
         Data items from the source
     """
-    if isinstance(data_source, Generator): # checks for type
+    if isinstance(data_source, Generator):  # checks for type
 
         yield from data_source
 
@@ -32,15 +37,13 @@ def create_pipeline(data: Iterable[Any]) -> Dict[str, Any]:
     Returns:
         Dictionary with data and processing steps
     """
-    return {
-        'data': data,
-        'steps': []
-    }
+    return {"data": data, "steps": []}
+
 
 def add_pipeline_step(
-    pipeline: Dict[str, Any], 
-    func: Callable[..., Any], # ... - everything type of object
-    *args: Any, 
+    pipeline: Dict[str, Any],
+    func: Callable[..., Any],  # ... - everything type of object
+    *args: Any,
     **kwargs: Any
 ) -> Dict[str, Any]:
     """
@@ -55,8 +58,9 @@ def add_pipeline_step(
     Returns:
         Updated pipeline (for method chaining)
     """
-    pipeline['steps'].append((func, args, kwargs))
+    pipeline["steps"].append((func, args, kwargs))
     return pipeline
+
 
 def execute_pipeline(pipeline: Dict[str, Any]) -> Iterator[Any]:
     """
@@ -69,14 +73,15 @@ def execute_pipeline(pipeline: Dict[str, Any]) -> Iterator[Any]:
         Iterator over processed data
     """
 
-    current_data: Iterable[Any] = pipeline['data']
-    
-    for step in pipeline['steps']:
+    current_data: Iterable[Any] = pipeline["data"]
+
+    for step in pipeline["steps"]:
         func, args, kwargs = step
         current_data = func(*args, current_data, **kwargs)
-    
+
     # return iterator
     return iter(current_data)
+
 
 def collect_pipeline_result(
     pipeline: Iterator[Any],
@@ -99,10 +104,9 @@ def collect_pipeline_result(
 
     return collector(pipeline, *args, **kwargs)
 
+
 def func(
-    f: Callable[..., Any], 
-    *args: Any, 
-    **kwargs: Any
+    f: Callable[..., Any], *args: Any, **kwargs: Any
 ) -> Callable[[Iterable[Any]], Iterator[Any]]:
     """
     Adapts a function to work with the pipeline (map, filter, enumerate, reduce)
@@ -115,19 +119,17 @@ def func(
     Returns:
         function that takes iterable and returns iterator
     """
-    
+
     # for filter, map, enumerate - because they have already been iterator
     if f in [filter, map, enumerate]:
         return lambda data: f(*args, data, **kwargs)
-    
+
     # for reduce - special realization
     elif f == reduce:
         if len(args) >= 2:
             return lambda data: iter([f(args[0], data, *args[1:], **kwargs)])
         else:
             return lambda data: iter([f(*args, data, **kwargs)])
-    
+
     else:
         return lambda data: iter(f(data, *args, **kwargs))
-    
-

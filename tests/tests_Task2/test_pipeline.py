@@ -3,7 +3,6 @@ from project.Task2.generators import *
 
 
 class Test_pipeline_with_func:
-
     @pytest.mark.parametrize(
         "input_data,operations,expected",
         [
@@ -37,28 +36,32 @@ class Test_pipeline_with_func:
         pipeline = create_pipeline(data_generator(input_data))
         for f, args in operations:
             pipeline = add_pipeline_step(pipeline, func(f, *args))
-        
-        
+
         result_iterator = execute_pipeline(pipeline)
         result = collect_pipeline_result(result_iterator)
         assert result == expected
 
 
 class Test_pipeline_collectors:
-
     @pytest.mark.parametrize(
         "input_data,collector,expected",
         [
             ([10, 20, 30, 40, 50], list, [10, 20, 30, 40, 50]),
             ([1, 2, 2, 3, 3, 3, 4, 4, 4, 4], set, {1, 2, 3, 4}),
             ([100, 200, 300, 400, 500], tuple, (100, 200, 300, 400, 500)),
-    
             (["python", "java", "rust", "go"], list, ["python", "java", "rust", "go"]),
-            (["apple", "banana", "apple", "orange"], set, {"apple", "banana", "orange"}),
+            (
+                ["apple", "banana", "apple", "orange"],
+                set,
+                {"apple", "banana", "orange"},
+            ),
             (["hello", "world", "!"], tuple, ("hello", "world", "!")),
-    
-        ([("name", "Alice"), ("age", 25), ("city", "London")], dict, {"name": "Alice", "age": 25, "city": "London"}),
-        ]
+            (
+                [("name", "Alice"), ("age", 25), ("city", "London")],
+                dict,
+                {"name": "Alice", "age": 25, "city": "London"},
+            ),
+        ],
     )
     def test_pipeline_collectors(self, input_data, collector, expected):
         """Test Pipeline with different collectors"""
