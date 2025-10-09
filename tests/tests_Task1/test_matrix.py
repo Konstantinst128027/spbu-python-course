@@ -1,6 +1,6 @@
 import pytest
 import math
-import project.matrixs as mt
+import project.Task1.matrixs as mt
 
 
 class Test_Matrix_Operations:
