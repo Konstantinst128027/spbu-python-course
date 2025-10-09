@@ -1,10 +1,16 @@
 import pytest
+from typing import Any, Iterable, Iterator
 from functools import reduce
-from project.Task2.generators import func
+from project.Task2.generators import func, data_generator
 
 
 class Test_Func:
     """Tests for func helper function"""
+
+    # My own function
+    def double_all(iterable: Iterable[Any]) -> Iterator[Any]:
+        for item in iterable:
+            yield item * 2
 
     @pytest.mark.parametrize(
         "f,args,test_data,expected",
@@ -51,10 +57,24 @@ class Test_Func:
             ),
             (reduce, (lambda x, y: x * y, 2), [3, 4, 5], [120]),
             (reduce, (lambda x, y: x - y, 100), [10, 20, 30], [40]),
+            (double_all, (), [-1, 0, 1], [-2, 0, 2]),
         ],
     )
     def test_func(self, f, args, test_data, expected):
-
         wrapped_func = func(f, *args)
         result = list(wrapped_func(test_data))
         assert result == expected
+
+        # Lazy_test
+        gen = wrapped_func(data_generator(test_data))
+
+        taken_elements = []
+
+        for i in range(min(3, len(expected))):
+            element = next(gen)
+            taken_elements.append(element)
+            assert element == expected[i]
+
+        if len(expected) > 3:
+            remaining = list(gen)
+            assert taken_elements + remaining == expected

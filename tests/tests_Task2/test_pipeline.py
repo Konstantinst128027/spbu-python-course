@@ -67,3 +67,23 @@ class Test_pipeline_collectors:
         """Test Pipeline with different collectors"""
         result = collect_pipeline_result(data_generator(input_data), collector)
         assert result == expected
+
+    # Lazy_test
+    # Calculated only when needed.
+    def test_pipeline_laziness_next(self):
+        input_data = [1, 2, 3, 4, 5]
+
+        pipeline = create_pipeline(data_generator(input_data))
+        pipeline = add_pipeline_step(pipeline, func(map, lambda x: x * 2))
+        pipeline = add_pipeline_step(pipeline, func(filter, lambda x: x > 5))
+
+        result_iterator = execute_pipeline(pipeline)
+
+        first = next(result_iterator)
+        assert first == 6
+
+        second = next(result_iterator)
+        assert second == 8
+
+        third = next(result_iterator)
+        assert third == 10

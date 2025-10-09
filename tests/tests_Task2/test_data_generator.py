@@ -25,3 +25,14 @@ class Test_Data_Generator:
     def test_data_generator(self, input_data, expected):
         result = list(data_generator(input_data))
         assert result == expected
+
+        # Lazy_test
+        gen = data_generator(input_data)
+        for i in range(3):
+            if i < len(expected):
+                argument = next(gen)
+                assert argument == expected[i]
+            else:
+                break
+        if len(expected) > 3:
+            assert list(gen) == expected[3:]
