@@ -22,7 +22,6 @@ def cache(maxsize: Optional[int] = None) -> Callable:
         if maxsize is None:
             return func
 
-        # Привдим нехэшируемые типы объектов к хэшируемым
         def to_hashable(obj: Any) -> Any:
             """We use recursion to make elements like [1, 2, [3, 4]] work correctly"""
             if isinstance(obj, (int, float, str, bytes, bool, type(None))):
