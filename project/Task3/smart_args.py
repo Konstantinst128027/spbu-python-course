@@ -1,6 +1,5 @@
 import copy
 import inspect
-from functools import wraps
 
 
 class Evaluated:
@@ -52,7 +51,6 @@ def smart_args(func):
                 param.kind == param.KEYWORD_ONLY
             ), f"The '{param_name}' argument with {type(param.default).__name__} must be keyword-only (use * for separation)"
 
-    @wraps(func)  # to save metadata such as name, etc.
     def wrapper(*args, **kwargs):
         bound_args = signature.bind(
             *args, **kwargs

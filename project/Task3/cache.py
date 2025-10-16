@@ -1,5 +1,4 @@
 from typing import Callable, Any, Dict, Optional
-from functools import wraps
 import inspect
 
 
@@ -24,7 +23,7 @@ def cache(maxsize: Optional[int] = None) -> Callable:
 
         def to_hashable(obj: Any) -> Any:
             """We use recursion to make elements like [1, 2, [3, 4]] work correctly"""
-            if isinstance(obj, (int, float, str, bytes, bool, type(None))):
+            if isinstance(obj, (int, float, str, bool, type(None))):
                 return obj
             elif isinstance(obj, (list, tuple)):
                 return tuple(to_hashable(item) for item in obj)
@@ -42,7 +41,6 @@ def cache(maxsize: Optional[int] = None) -> Callable:
 
         cache_dict: Dict[Any, Any] = {}
 
-        @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             sig = inspect.signature(func)
             bound_args = sig.bind(*args, **kwargs)

@@ -49,7 +49,7 @@ def test_isolated_basic():
     result = test_func(data=original_list)
 
     assert result == [1, 2, 3, 4]
-    assert original_list == [1, 2, 3]  # Оригинал не изменился
+    assert original_list == [1, 2, 3]
 
 
 def test_isolated_without_value():
