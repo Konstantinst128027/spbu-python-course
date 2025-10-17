@@ -1,4 +1,4 @@
-from typing import Callable, Any
+from typing import Callable, Any, Tuple
 
 
 def curry_explicit(function: Callable[..., Any], arity: int = 0) -> Callable[..., Any]:
@@ -25,7 +25,7 @@ def curry_explicit(function: Callable[..., Any], arity: int = 0) -> Callable[...
         return curried_zero
 
     def curried(first_arg: Any) -> Any:
-        args: tuple[Any, ...] = (first_arg,)
+        args: Tuple[Any, ...] = (first_arg,)
 
         if len(args) == arity:  # verification for arity = 1
             return function(*args)

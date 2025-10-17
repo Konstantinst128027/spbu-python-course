@@ -1,4 +1,4 @@
-from typing import Callable, Any, Dict, Optional
+from typing import Callable, Any, Dict, Optional, List
 import inspect
 
 
@@ -40,7 +40,7 @@ def cache(maxsize: Optional[int] = None) -> Callable:
                     return repr(obj)
 
         cache_dict: Dict[Any, Any] = {}
-        keys: list[Any] = []
+        keys: List[Any] = []
 
         def wrapper(*args: Any, **kwargs: Any) -> Any:
 
