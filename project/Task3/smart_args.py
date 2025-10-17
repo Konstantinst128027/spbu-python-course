@@ -20,7 +20,7 @@ class Isolated:
         self.obj = obj
 
 
-def smart_args(func: Callable):
+def smart_args(func: Callable) -> Any:
     """
     A smart decorator for handling function arguments with Isolated and Evaluated.
 
@@ -47,7 +47,7 @@ def smart_args(func: Callable):
                 param.kind == param.KEYWORD_ONLY
             ), f"The '{param_name}' argument with {type(param.default).__name__} must be keyword-only (use * for separation)"
 
-    def wrapper(*args: Any, **kwargs: Any):
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
         bound_args = signature.bind(
             *args, **kwargs
         )  # substitutes the arguments that are passed to the function
