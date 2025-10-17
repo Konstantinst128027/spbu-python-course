@@ -1,14 +1,23 @@
 import copy
 import inspect
+from typing import Callable
 
 
 class Evaluated:
-    def __init__(self, func):
+    def __init__(self, func: Callable) -> None:
+
+        if isinstance(func, Isolated):
+            raise KeyError("no need to combine Isolated and Evaluated")
+
         self.func = func
 
 
 class Isolated:
-    pass
+    def __init__(self, obj=None) -> None:
+
+        if isinstance(obj, Evaluated):
+            raise KeyError("no need to combine Isolated and Evaluated")
+        self.obj = obj
 
 
 def smart_args(func):
@@ -30,19 +39,6 @@ def smart_args(func):
     ValueError: If no value is passed for the Isolated argument
     """
     signature = inspect.signature(func)  # information about function parameters
-
-    has_isolated = False
-    has_evaluated = False
-
-    for param_name, param in signature.parameters.items():
-        if isinstance(param.default, Isolated):
-            has_isolated = True
-        elif isinstance(param.default, Evaluated):
-            has_evaluated = True
-
-    assert not (
-        has_isolated and has_evaluated
-    ), "Isolated and Evaluated cannot be used together in the same function"
 
     # It is necessary that ONLY named ones are transmitted
     for param_name, param in signature.parameters.items():

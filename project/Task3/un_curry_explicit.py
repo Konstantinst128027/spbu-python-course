@@ -24,15 +24,22 @@ def curry_explicit(function: Callable[..., Any], arity: int = 0) -> Callable[...
 
         return curried_zero
 
-    def curried(*args: Any) -> Any:
-        if len(args) >= arity:
-            return function(*args[:arity])  # unnecessary arguments are ignored.
-        else:
+    def curried(first_arg: Any) -> Any:
+        args: tuple[Any, ...] = (first_arg,)
 
-            def next_curried(*next_args: Any) -> Any:
-                return curried(*(args + next_args))
+        if len(args) == arity:  # verification for arity = 1
+            return function(*args)
 
-            return next_curried
+        def next_curried(next_arg: Any) -> Any:
+            nonlocal args
+            args += (next_arg,)
+
+            if len(args) == arity:
+                return function(*args)
+            else:
+                return next_curried
+
+        return next_curried
 
     return curried
 

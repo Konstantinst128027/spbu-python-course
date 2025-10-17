@@ -9,8 +9,16 @@ def test_curry_explicit_basic():
     curried = curry_explicit(func, 3)
 
     assert curried(1)(2)(3) == "(1, 2, 3)"
-    assert curried(1, 2)(3) == "(1, 2, 3)"
-    assert curried(1, 2, 3) == "(1, 2, 3)"
+
+
+def test_curry_explicit_error():
+    def func(a, b, c):
+        return f"({a}, {b}, {c})"
+
+    curried = curry_explicit(func, 3)
+
+    with pytest.raises(TypeError):
+        curried(1, 2)(3)
 
 
 def test_curry_explicit_zero_arity():
@@ -32,25 +40,37 @@ def test_curry_explicit_with_builtin():
     assert curried_add(10)(20) == 30
 
 
-def test_curry_explicit_variable_arity_ignored():
-    def func(a, b, c):
-        return a + b + c
+def test_curry_with_python_function():
+    curried_max = curry_explicit(max, 2)
 
-    curried = curry_explicit(func, 3)
+    result = curried_max(5)(10)
+    assert result == 10
+    result = curried_max(30)(5)
+    assert result == 30
 
-    assert curried(1, 2, 3, 4, 5) == 6
-    assert curried(1)(2, 3, 4, 5) == 6
+    curried_min = curry_explicit(min, 3)
+
+    result = curried_min(5)(10)(3)
+    assert result == 3
+
+    curried_print = curry_explicit(print, 1)
+
+    curried_print("hello")
+
+    curried_len = curry_explicit(len, 1)
+
+    result = curried_len([1, 2, 3])
+    assert result == 3
 
 
-def test_curry_explicit_multiple_args_at_once():
-    def func(a, b, c, d):
-        return f"{a} {b} {c} {d}"
+def test_curry_variable_of_number_args():
+    def mixed_func(a, b, *args):
+        return a + b + sum(args)
 
-    curried = curry_explicit(func, 4)
+    curried_mixed = curry_explicit(mixed_func, 7)
 
-    assert curried(1)(2, 3)(4) == "1 2 3 4"
-    assert curried(1, 2)(3, 4) == "1 2 3 4"
-    assert curried(1, 2, 3)(4) == "1 2 3 4"
+    result = curried_mixed(5)(10)(5)(4)(3)(2)(5)
+    assert result == 34
 
 
 def test_uncurry_explicit_basic():

@@ -71,8 +71,18 @@ class Test_cache:
         multiply(2, 3)
         multiply(4, 5)
 
-        with pytest.raises(ValueError):
-            multiply(6, 7)
+        keys_before_1 = multiply.keys[0]
+        keys_before_2 = multiply.keys[1]
+
+        assert len(multiply.cache_dict) == 2
+
+        multiply(6, 7)
+
+        keys_after_1 = multiply.keys[0]
+        keys_after_2 = multiply.keys[1]
+
+        assert keys_after_1 == keys_before_2
+        assert not keys_before_1 == keys_after_1
 
         assert len(multiply.cache_dict) == 2
 
