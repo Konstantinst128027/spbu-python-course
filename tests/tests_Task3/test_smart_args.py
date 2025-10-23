@@ -83,12 +83,12 @@ def test_isolated_and_evaluated_together():
 
 def test_evaluated_isolated_error():
 
-    with pytest.raises(KeyError):
+    with pytest.raises(TypeError):
 
         def func(*, x=Evaluated(Isolated())):
             return x
 
-    with pytest.raises(KeyError):
+    with pytest.raises(TypeError):
 
         def func(*, x=Isolated(Evaluated(lambda: 42))):
             return x

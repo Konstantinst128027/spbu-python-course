@@ -7,7 +7,7 @@ class Evaluated:
     def __init__(self, func: Callable) -> None:
 
         if isinstance(func, Isolated):
-            raise KeyError("no need to combine Isolated and Evaluated")
+            raise TypeError("no need to combine Isolated and Evaluated")
 
         self.func = func
 
@@ -16,7 +16,7 @@ class Isolated:
     def __init__(self, obj=None) -> None:
 
         if isinstance(obj, Evaluated):
-            raise KeyError("no need to combine Isolated and Evaluated")
+            raise TypeError("no need to combine Isolated and Evaluated")
         self.obj = obj
 
 
