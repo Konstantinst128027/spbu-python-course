@@ -19,9 +19,10 @@ def test_curry_explicit_error():
 
     with pytest.raises(TypeError):
         curried(1, 2)(3)
-        
+
     with pytest.raises(TypeError):
-        curried(1)(2,3)
+        curried(1)(2, 3)
+
 
 def test_curry_explicit_zero_arity():
     def func():
