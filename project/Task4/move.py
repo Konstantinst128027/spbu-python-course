@@ -23,10 +23,10 @@ class Move:
             f"\nWinning number is {winning_number} - {self.roulet.get_color(winning_number)}, {self.roulet.is_even(winning_number)}, {self.roulet.get_less_more(winning_number)}\n"
         )
         for bot in self.player:
-                if bot.current_bet is not None:
-                    print_in_txt(
-                        f"{bot.name} - {bot.balance}, bet: {bot.current_bet.bet_name} - {bot.current_bet.value} - {bot.current_bet.amount_of_money}, {bot.total_wins}/{bot.total_losses}"
-                    )
+            if bot.current_bet is not None:
+                print_in_txt(
+                    f"{bot.name} - {bot.balance}, bet: {bot.current_bet.bet_name} - {bot.current_bet.value} - {bot.current_bet.amount_of_money}, {bot.total_wins}/{bot.total_losses}"
+                )
 
     def round(self, winning_number: int) -> None:
         """
