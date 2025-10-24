@@ -14,7 +14,7 @@ class Player:
         self.bets: typing.List[typing.Tuple[str, typing.Any, int]] = []
         self.total_wins: int = 0
         self.total_losses: int = 0
-        self.current_bet = None
+        self.current_bet: typing.Optional[Bet] = None
 
     def make_bet(self) -> Bet:
         """

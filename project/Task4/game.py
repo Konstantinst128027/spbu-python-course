@@ -20,7 +20,9 @@ class Game:
         """
         Starts and manages the game process
         """
-        print_in_txt("Welcome to my implementation of the roulette game (only bots play)")
+        print_in_txt(
+            "Welcome to my implementation of the roulette game (only bots play)"
+        )
         roulet = Roulet()
         roulet.displaying_name_of_bets()
         roulet.get_black_number()
@@ -36,15 +38,17 @@ class Game:
 
         for bot in self.player:
             bot.current_bet = bot.make_bet()
-    
+
         print_in_txt("The game begins")
 
         first = input("press Enter to start the first round...")
         for i in range(self.number_of_rounds):
-            active_bots = [bot for bot in self.player if not bot.is_bankrupt() and bot.current_bet]
+            active_bots = [
+                bot for bot in self.player if not bot.is_bankrupt() and bot.current_bet
+            ]
             if len(active_bots) == 0:
                 break
-        
+
             for bot in active_bots:
                 bot.current_bet = bot.make_bet()
 
@@ -57,7 +61,9 @@ class Game:
 
             bankrupt = []
             for bot in self.player:
-                if bot.is_bankrupt() or (bot.current_bet and bot.current_bet.amount_of_money == 0):
+                if bot.is_bankrupt() or (
+                    bot.current_bet and bot.current_bet.amount_of_money == 0
+                ):
                     bankrupt.append(bot)
 
             for bot in bankrupt:

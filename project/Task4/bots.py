@@ -4,6 +4,7 @@ from enum import Enum
 import random
 import typing
 
+
 class External_bids_only_bot(Player):
     def __init__(self, initial_balance: int) -> None:
         """
@@ -15,7 +16,7 @@ class External_bids_only_bot(Player):
 
     class BetType(Enum):
         RED_BLACK = "red_black"
-        EVEN_ODD = "even_odd" 
+        EVEN_ODD = "even_odd"
         LESS_MORE = "less_more"
 
     def make_bet(self) -> Bet:
@@ -57,7 +58,7 @@ class Straight_only_bot(Player):
         bet_value: typing.Union[str, int, typing.List[int]]
 
         bet = "straight"
-        bet_value = random.randint(0,36)
+        bet_value = random.randint(0, 36)
 
         bet_amount = self.balance // 6
         self.bets.append((bet, bet_value, bet_amount))
@@ -100,16 +101,16 @@ class Random_bot(Player):
         match bet:
             case "red_black":
                 bet_value = random.choice(["red", "black"])
-    
+
             case "even_odd":
                 bet_value = random.choice(["even", "odd"])
-    
+
             case "less_more":
                 bet_value = random.choice(["less", "more"])
-    
+
             case "straight":
-                bet_value = random.randint(0,36)
-    
+                bet_value = random.randint(0, 36)
+
             case "split":
                 first = random.randint(4, 33)
                 match first % 3:
@@ -118,18 +119,20 @@ class Random_bot(Player):
                     case 1:
                         second = random.choice([first + 1, first + 3, first - 3])
                     case 2:
-                        second = random.choice([first + 1, first + 3, first - 3, first - 1])
+                        second = random.choice(
+                            [first + 1, first + 3, first - 3, first - 1]
+                        )
                 bet_value = [first, second]
-    
+
             case "street":
                 bet_value = random.randint(1, 13)
-    
+
             case "basket":
                 bet_value = random.choice([[0, 1, 2], [0, 2, 3]])
-    
+
             case "first_four":
                 bet_value = [0, 1, 2, 3]
-    
+
             case "corner":
                 first = random.randint(1, 37)
                 match first:
@@ -149,21 +152,36 @@ class Random_bot(Player):
                         match first % 3:
                             case 1:
                                 second = random.choice([-3, 3])
-                                bet_value = [first, first + 1, first + second, first + 1 + second]
+                                bet_value = [
+                                    first,
+                                    first + 1,
+                                    first + second,
+                                    first + 1 + second,
+                                ]
                             case 0:
                                 second = random.choice([-3, 3])
-                                bet_value = [first, first - 1, first + second, first - 1 + second]
+                                bet_value = [
+                                    first,
+                                    first - 1,
+                                    first + second,
+                                    first - 1 + second,
+                                ]
                             case 2:
                                 second = random.choice([-3, 3])
                                 third = random.choice([-1, 1])
-                                bet_value = [first, first + third, first + second, first + third + second]
-    
+                                bet_value = [
+                                    first,
+                                    first + third,
+                                    first + second,
+                                    first + third + second,
+                                ]
+
             case "line":
                 bet_value = random.randint(1, 7)
-    
+
             case "column":
                 bet_value = random.randint(1, 4)
-    
+
             case "dozen":
                 bet_value = random.randint(1, 4)
 

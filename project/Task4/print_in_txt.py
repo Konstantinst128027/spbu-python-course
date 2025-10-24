@@ -1,6 +1,9 @@
 import typing
 
-def print_in_txt(message: str, log_file: str = "project/Task4/examples/example_game.txt") -> None:
+
+def print_in_txt(
+    message: str, log_file: str = "project/Task4/examples/example_game.txt"
+) -> None:
     """
     Prints message to terminal and writes to log file
     """

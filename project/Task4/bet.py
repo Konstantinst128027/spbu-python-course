@@ -1,4 +1,6 @@
 import typing
+
+
 class Bet:
     def __init__(self, name: str, value: typing.Any, amount_of_money: int) -> None:
         """

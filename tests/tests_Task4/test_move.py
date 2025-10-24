@@ -46,7 +46,7 @@ def test_round_external_bot_win(setup_move):
         if bot.name == "External_bids_only_bot":
             ext_bot = bot
             break
-    
+
     ext_bot.current_bet = ext_bot.make_bet()
     winning_number = roulet.red_numbers[0]
 
@@ -64,7 +64,7 @@ def test_round_straight_bot_win(setup_move):
         if bot.name == "Straight_only_bot":
             straight_bot = bot
             break
-    
+
     straight_bot.current_bet = straight_bot.make_bet()
     winning_number = 7
 
@@ -82,7 +82,7 @@ def test_round_random_bot_win(setup_move):
         if bot.name == "Random_bot":
             random_bot = bot
             break
-    
+
     random_bot.current_bet = random_bot.make_bet()
     winning_number = roulet.spin()
 

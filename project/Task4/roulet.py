@@ -3,6 +3,7 @@ import random
 from project.Task4.bet import Bet
 from project.Task4.print_in_txt import print_in_txt
 
+
 class Roulet:
     def __init__(self) -> None:
         """
