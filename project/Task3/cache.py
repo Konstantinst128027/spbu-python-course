@@ -32,12 +32,7 @@ def cache(maxsize: Optional[int] = None) -> Callable:
             elif isinstance(obj, set):
                 return tuple(sorted(to_hashable(item) for item in obj))
             else:
-                try:
-                    hash(obj)  # outputs a number
-                    return obj
-                except TypeError:
-                    # for other non-hashable objects, use repr to convert them to a string
-                    return repr(obj)
+                return repr(obj)
 
         cache_dict: Dict[Any, Any] = {}
         keys: List[Any] = []

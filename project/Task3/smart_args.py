@@ -54,16 +54,14 @@ def smart_args(func: Callable) -> Any:
         bound_args.apply_defaults()  # takes arguments that were not passed and are given by default and substitutes the default value for the parameter value
 
         for param_name, param in signature.parameters.items():
+            default_value = param.default
 
             # Evaluated Processing
-            if param_name not in kwargs and param.default is not param.empty:
-                default_value = param.default
-
-                if isinstance(default_value, Evaluated):
-                    bound_args.arguments[param_name] = default_value.func()
+            if isinstance(default_value, Evaluated) and param_name not in kwargs:
+                bound_args.arguments[param_name] = default_value.func()
 
             # Isolated Processing
-            if param_name in bound_args.arguments and isinstance(
+            if isinstance(
                 param.default, Isolated
             ):
 
