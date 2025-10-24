@@ -1,7 +1,7 @@
 import typing
 import random
 from project.Task4.bet import Bet
-
+from project.Task4.print_in_txt import print_in_txt
 
 class Roulet:
     def __init__(self) -> None:
@@ -74,20 +74,20 @@ class Roulet:
         """
         Displays red numbers
         """
-        print(f"red_numbers: {self.red_numbers}")
+        print_in_txt(f"red_numbers: {self.red_numbers}")
 
     def get_black_number(self) -> None:
         """
         Displays black numbers
         """
-        print(f"black_numbers: {self.black_numbers}")
+        print_in_txt(f"black_numbers: {self.black_numbers}")
 
     def displaying_name_of_bets(self) -> None:
         """
         Displays available bet types
         """
         for key, value in self.coefficients.items():
-            print(f"name: {key}, coefficients: {value}")
+            print_in_txt(f"name: {key}, coefficients: {value}")
 
     def get_color(self, number: int) -> str:
         """

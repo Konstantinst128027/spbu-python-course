@@ -12,40 +12,42 @@ def setup_move():
     straight_bot = Straight_only_bot(1000)
     random_bot = Random_bot(1000)
 
-    ext_bet = ext_bot.make_bet()
-    straight_bet = straight_bot.make_bet()
-    random_bet = random_bot.make_bet()
+    ext_bot.current_bet = ext_bot.make_bet()
+    straight_bot.current_bet = straight_bot.make_bet()
+    random_bot.current_bet = random_bot.make_bet()
 
-    bets = {ext_bot: ext_bet, straight_bot: straight_bet, random_bot: random_bet}
+    player = [ext_bot, straight_bot, random_bot]
 
-    move = Move(bets, roulet)
-    return move, bets, roulet
+    move = Move(player, roulet)
+    return move, player, roulet
 
 
 def test_move_initialization(setup_move):
-    move, bets, roulet = setup_move
-    assert move.bets == bets
+    move, player, roulet = setup_move
+    assert move.player == player
     assert move.roulet == roulet
 
 
 def test_round_execution(setup_move):
-    move, bets, roulet = setup_move
-    initial_balances = {bot: bot.balance for bot in bets.keys()}
+    move, player, roulet = setup_move
+    initial_balances = {bot: bot.balance for bot in player}
 
     winning_number = roulet.spin()
     move.round(winning_number)
 
-    for bot in bets.keys():
+    for bot in player:
         assert bot.balance != initial_balances[bot]
 
 
 def test_round_external_bot_win(setup_move):
-    move, bets, roulet = setup_move
+    move, player, roulet = setup_move
 
-    for bot in bets.keys():
+    for bot in player:
         if bot.name == "External_bids_only_bot":
             ext_bot = bot
             break
+    
+    ext_bot.current_bet = ext_bot.make_bet()
     winning_number = roulet.red_numbers[0]
 
     initial_balance = ext_bot.balance
@@ -56,13 +58,14 @@ def test_round_external_bot_win(setup_move):
 
 
 def test_round_straight_bot_win(setup_move):
-    move, bets, roulet = setup_move
+    move, player, roulet = setup_move
 
-    for bot in bets.keys():
+    for bot in player:
         if bot.name == "Straight_only_bot":
             straight_bot = bot
             break
-    winning_number = roulet.red_numbers[0]
+    
+    straight_bot.current_bet = straight_bot.make_bet()
     winning_number = 7
 
     initial_balance = straight_bot.balance
@@ -73,12 +76,14 @@ def test_round_straight_bot_win(setup_move):
 
 
 def test_round_random_bot_win(setup_move):
-    move, bets, roulet = setup_move
+    move, player, roulet = setup_move
 
-    for bot in bets.keys():
+    for bot in player:
         if bot.name == "Random_bot":
             random_bot = bot
             break
+    
+    random_bot.current_bet = random_bot.make_bet()
     winning_number = roulet.spin()
 
     initial_balance = random_bot.balance

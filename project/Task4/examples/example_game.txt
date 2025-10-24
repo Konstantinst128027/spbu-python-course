@@ -1,0 +1,139 @@
+Welcome to my implementation of the roulette game (only bots play)
+name: straight, coefficients: 35
+name: split, coefficients: 17
+name: street, coefficients: 11
+name: basket, coefficients: 11
+name: first_four, coefficients: 8
+name: corner, coefficients: 8
+name: line, coefficients: 5
+name: red_black, coefficients: 1
+name: even_odd, coefficients: 1
+name: dozen, coefficients: 2
+name: column, coefficients: 2
+name: less_more, coefficients: 1
+black_numbers: [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
+red_numbers: [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
+Players: External_bids_only_bot - 1000, Straight_only_bot - 1000, Random_bot - 1000
+
+The game begins
+
+Winning number is 35 - black, odd, more
+
+External_bids_only_bot - 1250, bet: less_more - more - 250, 1/0
+Straight_only_bot - 834, bet: straight - 25 - 166, 0/1
+Random_bot - 889, bet: straight - 26 - 111, 0/1
+
+Winning number is 19 - red, odd, more
+
+External_bids_only_bot - 938, bet: even_odd - even - 312, 1/1
+Straight_only_bot - 695, bet: straight - 7 - 139, 0/2
+Random_bot - 762, bet: straight - 8 - 127, 0/2
+
+Winning number is 3 - red, odd, less
+
+External_bids_only_bot - 704, bet: even_odd - even - 234, 1/2
+Straight_only_bot - 580, bet: straight - 33 - 115, 0/3
+Random_bot - 508, bet: straight - 1 - 254, 0/3
+
+Winning number is 5 - red, odd, less
+
+External_bids_only_bot - 880, bet: even_odd - odd - 176, 2/2
+Straight_only_bot - 484, bet: straight - 30 - 96, 0/4
+Random_bot - 445, bet: corner - [1, 2, 3, 4] - 63, 0/4
+
+Winning number is 30 - red, even, more
+
+External_bids_only_bot - 1100, bet: even_odd - even - 220, 3/2
+Straight_only_bot - 404, bet: straight - 36 - 80, 0/5
+Random_bot - 356, bet: line - 3 - 89, 0/5
+
+Winning number is 14 - red, even, less
+
+External_bids_only_bot - 1375, bet: even_odd - even - 275, 4/2
+Straight_only_bot - 337, bet: straight - 19 - 67, 0/6
+Random_bot - 444, bet: dozen - 2 - 44, 1/5
+
+Winning number is 18 - red, even, less
+
+External_bids_only_bot - 1718, bet: even_odd - even - 343, 5/2
+Straight_only_bot - 281, bet: straight - 2 - 56, 0/7
+Random_bot - 570, bet: column - 3 - 63, 2/5
+
+Winning number is 32 - red, even, more
+
+External_bids_only_bot - 1289, bet: less_more - less - 429, 5/3
+Straight_only_bot - 235, bet: straight - 2 - 46, 0/8
+Random_bot - 665, bet: even_odd - even - 95, 3/5
+
+Winning number is 6 - black, even, less
+
+External_bids_only_bot - 1611, bet: less_more - less - 322, 6/3
+Straight_only_bot - 196, bet: straight - 27 - 39, 0/9
+Random_bot - 831, bet: even_odd - even - 166, 4/5
+
+Winning number is 4 - black, even, less
+
+External_bids_only_bot - 2013, bet: red_black - black - 402, 7/3
+Straight_only_bot - 164, bet: straight - 24 - 32, 0/10
+Random_bot - 665, bet: less_more - more - 166, 4/6
+
+Winning number is 23 - red, odd, more
+
+External_bids_only_bot - 2516, bet: even_odd - odd - 503, 8/3
+Straight_only_bot - 137, bet: straight - 15 - 27, 0/11
+Random_bot - 532, bet: street - 4 - 133, 4/7
+
+Winning number is 20 - black, even, more
+
+External_bids_only_bot - 3145, bet: red_black - black - 629, 9/3
+Straight_only_bot - 115, bet: straight - 8 - 22, 0/12
+Random_bot - 664, bet: dozen - 2 - 66, 5/7
+
+Winning number is 30 - red, even, more
+
+External_bids_only_bot - 3931, bet: less_more - more - 786, 10/3
+Straight_only_bot - 96, bet: straight - 36 - 19, 0/13
+Random_bot - 570, bet: corner - [15, 14, 12, 11] - 94, 5/8
+
+Winning number is 31 - black, odd, more
+
+External_bids_only_bot - 2949, bet: even_odd - even - 982, 10/4
+Straight_only_bot - 80, bet: straight - 23 - 16, 0/14
+Random_bot - 456, bet: basket - [0, 1, 2] - 114, 5/9
+
+Winning number is 18 - red, even, less
+
+External_bids_only_bot - 3686, bet: less_more - less - 737, 11/4
+Straight_only_bot - 67, bet: straight - 3 - 13, 0/15
+Random_bot - 684, bet: red_black - red - 228, 6/9
+
+Winning number is 18 - red, even, less
+
+External_bids_only_bot - 2765, bet: red_black - black - 921, 11/5
+Straight_only_bot - 56, bet: straight - 13 - 11, 0/16
+Random_bot - 342, bet: first_four - [0, 1, 2, 3] - 342, 6/10
+
+Winning number is 20 - black, even, more
+
+External_bids_only_bot - 2074, bet: even_odd - odd - 691, 11/6
+Straight_only_bot - 47, bet: straight - 16 - 9, 0/17
+Random_bot - 294, bet: basket - [0, 1, 2] - 48, 6/11
+
+Winning number is 35 - black, odd, more
+
+External_bids_only_bot - 1556, bet: less_more - less - 518, 11/7
+Straight_only_bot - 292, bet: straight - 35 - 7, 1/17
+Random_bot - 245, bet: basket - [0, 1, 2] - 49, 6/12
+
+Winning number is 25 - red, odd, more
+
+External_bids_only_bot - 1945, bet: less_more - more - 389, 12/7
+Straight_only_bot - 244, bet: straight - 23 - 48, 1/18
+Random_bot - 215, bet: line - 3 - 30, 6/13
+
+Winning number is 34 - red, even, more
+
+External_bids_only_bot - 2431, bet: less_more - more - 486, 13/7
+Straight_only_bot - 204, bet: straight - 14 - 40, 1/19
+Random_bot - 144, bet: street - 6 - 71, 6/14
+This round will not be held. Our game is over

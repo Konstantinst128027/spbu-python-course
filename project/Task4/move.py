@@ -2,15 +2,15 @@ import typing
 from project.Task4.roulet import Roulet
 from project.Task4.player import Player
 from project.Task4.bet import Bet
-
+from project.Task4.print_in_txt import print_in_txt
 
 class Move:
-    def __init__(self, bets: typing.Dict[Player, Bet], roulet: Roulet) -> None:
+    def __init__(self, player: typing.List[Player], roulet: Roulet) -> None:
         """
         Creates a move round
-        Takes: Dict - players_bets, roulette
+        Takes: List of bots (each has current_bet), roulette
         """
-        self.bets: typing.Dict[Player, Bet] = bets
+        self.player: typing.List[Player] = player
         self.roulet: Roulet = roulet
 
     def displaying_information(self, winning_number: int) -> None:
@@ -18,13 +18,12 @@ class Move:
         Displays round information
         Takes: winning number
         """
-        print(
-            f"Winning number is {winning_number} - {self.roulet.get_color(winning_number)}, {self.roulet.is_even(winning_number)}, {self.roulet.get_less_more(winning_number)}\n"
+        print_in_txt(
+            f"\nWinning number is {winning_number} - {self.roulet.get_color(winning_number)}, {self.roulet.is_even(winning_number)}, {self.roulet.get_less_more(winning_number)}\n"
         )
-
-        for key_1, value in self.bets.items():
-            print(
-                f"{key_1.name} - {key_1.balance}, bet: {value.bet_name} - {value.value} - {value.amount_of_money}, {key_1.total_wins}/{key_1.total_losses}"
+        for bot in self.player:
+            print_in_txt(
+                f"{bot.name} - {bot.balance}, bet: {bot.current_bet.bet_name} - {bot.current_bet.value} - {bot.current_bet.amount_of_money}, {bot.total_wins}/{bot.total_losses}"
             )
 
     def round(self, winning_number: int) -> None:
@@ -32,9 +31,7 @@ class Move:
         Processes a game round
         Takes: winning number
         """
-        winning = []
-        i = 0
-        for key, value in self.bets.items():
-            winning.append(self.roulet.calculation_of_winning(value, winning_number))
-            key.adding_winnings(winning[i])
-            i += 1
+        for bot in self.player:
+            winning = self.roulet.calculation_of_winning(bot.current_bet, winning_number)
+            bot.adding_winnings(winning)
+
