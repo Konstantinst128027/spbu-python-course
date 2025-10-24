@@ -183,3 +183,52 @@ class Random_bot(Player):
         self.bets.append((bet, bet_value, bet_amount))
 
         return Bet(bet, bet_value, bet_amount)
+
+
+class Martingale_bot(Player):
+    def __init__(self, initial_balance: int) -> None:
+        """
+        Creates a Martingale_bot
+        Takes: initial balance
+        """
+        self.name: str = "Martingale_bot"
+        super().__init__(self.name, initial_balance)
+        self.base_bet = 100  # basic bet
+        self.current_bet_amount = self.base_bet
+        self.last_bet_won = True
+        self.consecutive_losses = 0
+
+    def make_bet(self) -> Bet:
+        """
+        Creates bet according to Martingale strategy
+        Returns: bet
+        """
+        if self.last_bet_won:
+            self.current_bet_amount = self.base_bet
+            self.consecutive_losses = 0
+        else:
+            self.current_bet_amount = min(self.current_bet_amount * 2, self.balance)
+            self.consecutive_losses += 1
+
+        bet_type = "red_black"
+        bet_value = random.choice(["red", "black"])
+
+        if self.current_bet_amount > self.balance:
+            self.current_bet_amount = self.balance
+
+        bet_amount = self.current_bet_amount
+
+        self.bets.append((bet_type, bet_value, bet_amount))
+
+        return Bet(bet_type, bet_value, bet_amount)
+
+    def adding_winnings(self, winnings: int) -> None:
+        """
+        Updates balance and tracks win/loss for Martingale strategy
+        """
+        super().adding_winnings(winnings)
+
+        if winnings > 0:
+            self.last_bet_won = True
+        else:
+            self.last_bet_won = False

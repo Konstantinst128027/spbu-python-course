@@ -1,5 +1,4 @@
 from project.Task4.roulet import Roulet
-from project.Task4.bots import External_bids_only_bot, Straight_only_bot, Random_bot
 from project.Task4.move import Move
 from project.Task4.bet import Bet
 from project.Task4.player import Player
