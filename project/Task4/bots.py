@@ -98,86 +98,76 @@ class Random_bot(Player):
 
         bet = random.choice(list(self.BetType))
 
-        if bet == self.BetType.RED_BLACK:
-            bet_value = random.choice(["red", "black"])
-
-        elif bet == self.BetType.EVEN_ODD:
-            bet_value = random.choice(["even", "odd"])
-
-        elif bet == self.BetType.LESS_MORE:
-            bet_value = random.choice(["less", "more"])
-
-        elif bet == self.BetType.STRAIGHT:
-            bet_value = random.randint(0, 36)
-
-        elif bet == self.BetType.SPLIT:
-            first = random.randint(4, 33)
-            if first % 3 == 0:
-                second = random.choice([first - 1, first + 3, first - 3])
-            elif first % 3 == 1:
-                second = random.choice([first + 1, first + 3, first - 3])
-            else:
-                second = random.choice([first + 1, first + 3, first - 3, first - 1])
-            bet_value = [first, second]
-
-        elif bet == self.BetType.STREET:
-            bet_value = random.randint(1, 13)
-
-        elif bet == self.BetType.BASKET:
-            bet_value = random.choice([[0, 1, 2], [0, 2, 3]])
-
-        elif bet == self.BetType.FIRST_FOUR:
-            bet_value = [0, 1, 2, 3]
-
-        elif bet == self.BetType.CORNER:
-            first = random.randint(1, 36)
-            if first == 1:
-                bet_value = [1, 2, 3, 4]
-            elif first == 2:
-                bet_value = random.choice([[2, 3, 5, 6], [1, 2, 4, 5]])
-            elif first == 3:
-                bet_value = [2, 3, 5, 6]
-            elif first == 34:
-                bet_value = [31, 32, 34, 35]
-            elif first == 35:
-                bet_value = random.choice([[31, 32, 34, 35], [32, 33, 35, 36]])
-            elif first == 36:
-                bet_value = [32, 33, 35, 36]
-            else:
-                if first % 3 == 1:
-                    second = random.choice([-3, 3])
-                    bet_value = [
-                        first,
-                        first + 1,
-                        first + second,
-                        first + 1 + second,
-                    ]
-                elif first % 3 == 0:
-                    second = random.choice([-3, 3])
-                    bet_value = [
-                        first,
-                        first - 1,
-                        first + second,
-                        first - 1 + second,
-                    ]
+        match bet:
+            case self.BetType.RED_BLACK:
+                bet_value = random.choice(["red", "black"])
+            case self.BetType.EVEN_ODD:
+                bet_value = random.choice(["even", "odd"])
+            case self.BetType.LESS_MORE:
+                bet_value = random.choice(["less", "more"])
+            case self.BetType.STRAIGHT:
+                bet_value = random.randint(0, 36)
+            case self.BetType.SPLIT:
+                first = random.randint(4, 33)
+                if first % 3 == 0:
+                    second = random.choice([first - 1, first + 3, first - 3])
+                elif first % 3 == 1:
+                    second = random.choice([first + 1, first + 3, first - 3])
                 else:
-                    second = random.choice([-3, 3])
-                    third = random.choice([-1, 1])
-                    bet_value = [
-                        first,
-                        first + third,
-                        first + second,
-                        first + third + second,
-                    ]
-
-        elif bet == self.BetType.LINE:
-            bet_value = random.randint(1, 7)
-
-        elif bet == self.BetType.COLUMN:
-            bet_value = random.randint(1, 4)
-
-        elif bet == self.BetType.DOZEN:
-            bet_value = random.randint(1, 4)
+                    second = random.choice([first + 1, first + 3, first - 3, first - 1])
+                bet_value = [first, second]
+            case self.BetType.STREET:
+                bet_value = random.randint(1, 13)
+            case self.BetType.BASKET:
+                bet_value = random.choice([[0, 1, 2], [0, 2, 3]])
+            case self.BetType.FIRST_FOUR:
+                bet_value = [0, 1, 2, 3]
+            case self.BetType.CORNER:
+                first = random.randint(1, 36)
+                if first == 1:
+                    bet_value = [1, 2, 3, 4]
+                elif first == 2:
+                    bet_value = random.choice([[2, 3, 5, 6], [1, 2, 4, 5]])
+                elif first == 3:
+                    bet_value = [2, 3, 5, 6]
+                elif first == 34:
+                    bet_value = [31, 32, 34, 35]
+                elif first == 35:
+                    bet_value = random.choice([[31, 32, 34, 35], [32, 33, 35, 36]])
+                elif first == 36:
+                    bet_value = [32, 33, 35, 36]
+                else:
+                    if first % 3 == 1:
+                        second = random.choice([-3, 3])
+                        bet_value = [
+                            first,
+                            first + 1,
+                            first + second,
+                            first + 1 + second,
+                        ]
+                    elif first % 3 == 0:
+                        second = random.choice([-3, 3])
+                        bet_value = [
+                            first,
+                            first - 1,
+                            first + second,
+                            first - 1 + second,
+                        ]
+                    else:
+                        second = random.choice([-3, 3])
+                        third = random.choice([-1, 1])
+                        bet_value = [
+                            first,
+                            first + third,
+                            first + second,
+                            first + third + second,
+                        ]
+            case self.BetType.LINE:
+                bet_value = random.randint(1, 7)
+            case self.BetType.COLUMN:
+                bet_value = random.randint(1, 4)
+            case self.BetType.DOZEN:
+                bet_value = random.randint(1, 4)
 
         bet_amount = self.balance // random.randint(1, 10)
         self.bets.append((bet.value, bet_value, bet_amount))
