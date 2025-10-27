@@ -26,19 +26,19 @@ class External_bids_only_bot(Player):
         """
         bet_value: typing.Union[str, int, typing.List[int]]
 
-        bet = random.choice(list(self.BetType)).value
+        bet = random.choice(list(self.BetType))
 
-        if bet == "red_black":
+        if bet == self.BetType.RED_BLACK:
             bet_value = random.choice(["red", "black"])
-        elif bet == "even_odd":
+        elif bet == self.BetType.EVEN_ODD:
             bet_value = random.choice(["even", "odd"])
         else:
             bet_value = random.choice(["less", "more"])
 
         bet_amount = self.balance // 4
-        self.bets.append((bet, bet_value, bet_amount))
+        self.bets.append((bet.value, bet_value, bet_amount))
 
-        return Bet(bet, bet_value, bet_amount)
+        return Bet(bet.value, bet_value, bet_amount)
 
 
 class Straight_only_bot(Player):
@@ -96,21 +96,21 @@ class Random_bot(Player):
         """
         bet_value: typing.Union[str, int, typing.List[int]]
 
-        bet = random.choice(list(self.BetType)).value
+        bet = random.choice(list(self.BetType))
 
-        if bet == "red_black":
+        if bet == self.BetType.RED_BLACK:
             bet_value = random.choice(["red", "black"])
 
-        elif bet == "even_odd":
+        elif bet == self.BetType.EVEN_ODD:
             bet_value = random.choice(["even", "odd"])
 
-        elif bet == "less_more":
+        elif bet == self.BetType.LESS_MORE:
             bet_value = random.choice(["less", "more"])
 
-        elif bet == "straight":
+        elif bet == self.BetType.STRAIGHT:
             bet_value = random.randint(0, 36)
 
-        elif bet == "split":
+        elif bet == self.BetType.SPLIT:
             first = random.randint(4, 33)
             if first % 3 == 0:
                 second = random.choice([first - 1, first + 3, first - 3])
@@ -120,17 +120,17 @@ class Random_bot(Player):
                 second = random.choice([first + 1, first + 3, first - 3, first - 1])
             bet_value = [first, second]
 
-        elif bet == "street":
+        elif bet == self.BetType.STREET:
             bet_value = random.randint(1, 13)
 
-        elif bet == "basket":
+        elif bet == self.BetType.BASKET:
             bet_value = random.choice([[0, 1, 2], [0, 2, 3]])
 
-        elif bet == "first_four":
+        elif bet == self.BetType.FIRST_FOUR:
             bet_value = [0, 1, 2, 3]
 
-        elif bet == "corner":
-            first = random.randint(1, 36)  # исправил на 36 вместо 37
+        elif bet == self.BetType.CORNER:
+            first = random.randint(1, 36)
             if first == 1:
                 bet_value = [1, 2, 3, 4]
             elif first == 2:
@@ -160,7 +160,7 @@ class Random_bot(Player):
                         first + second,
                         first - 1 + second,
                     ]
-                else:  # case 2
+                else:
                     second = random.choice([-3, 3])
                     third = random.choice([-1, 1])
                     bet_value = [
@@ -170,19 +170,19 @@ class Random_bot(Player):
                         first + third + second,
                     ]
 
-        elif bet == "line":
+        elif bet == self.BetType.LINE:
             bet_value = random.randint(1, 7)
 
-        elif bet == "column":
+        elif bet == self.BetType.COLUMN:
             bet_value = random.randint(1, 4)
 
-        elif bet == "dozen":
+        elif bet == self.BetType.DOZEN:
             bet_value = random.randint(1, 4)
 
         bet_amount = self.balance // random.randint(1, 10)
-        self.bets.append((bet, bet_value, bet_amount))
+        self.bets.append((bet.value, bet_value, bet_amount))
 
-        return Bet(bet, bet_value, bet_amount)
+        return Bet(bet.value, bet_value, bet_amount)
 
 
 class Martingale_bot(Player):

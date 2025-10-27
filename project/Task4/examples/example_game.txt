@@ -17,129 +17,133 @@ Players: External_bids_only_bot - 1000, Straight_only_bot - 1000, Random_bot - 1
 
 The game begins
 
-Winning number is 10 - black, even, less
+Winning number is 31 - black, odd, more
 
-External_bids_only_bot - 1250, bet: less_more - less - 250, 1/0
-Straight_only_bot - 834, bet: straight - 17 - 166, 0/1
-Random_bot - 1500, bet: column - 4 - 250, 1/0
+External_bids_only_bot - 750, bet: less_more - less - 250, 0/1
+Straight_only_bot - 834, bet: straight - 1 - 166, 0/1
+Random_bot - 667, bet: split - [5, 6] - 333, 0/1
 Martingale_bot - 900, bet: red_black - red - 100, 0/1
-
-Winning number is 13 - black, odd, less
-
-External_bids_only_bot - 1562, bet: less_more - less - 312, 2/0
-Straight_only_bot - 695, bet: straight - 14 - 139, 0/2
-Random_bot - 1000, bet: corner - [11, 12, 14, 15] - 500, 1/1
-Martingale_bot - 1100, bet: red_black - black - 200, 1/1
-
-Winning number is 18 - red, even, less
-
-External_bids_only_bot - 1172, bet: red_black - black - 390, 2/1
-Straight_only_bot - 580, bet: straight - 8 - 115, 0/3
-Random_bot - 1125, bet: less_more - less - 125, 2/1
-Martingale_bot - 1000, bet: red_black - black - 100, 1/2
-
-Winning number is 23 - red, odd, more
-
-External_bids_only_bot - 879, bet: red_black - black - 293, 2/2
-Straight_only_bot - 484, bet: straight - 10 - 96, 0/4
-Random_bot - 1013, bet: column - 4 - 112, 2/2
-Martingale_bot - 1200, bet: red_black - red - 200, 2/2
-
-Winning number is 0 - green, even, less
-
-External_bids_only_bot - 660, bet: red_black - black - 219, 2/3
-Straight_only_bot - 404, bet: straight - 23 - 80, 0/5
-Random_bot - 0, bet: corner - [30, 29, 27, 26] - 1013, 2/3
-Martingale_bot - 1100, bet: red_black - black - 100, 2/3
-Random_bot has gone bankrupt and is leaving the game!
-
-Winning number is 28 - black, even, more
-
-External_bids_only_bot - 825, bet: less_more - more - 165, 3/3
-Straight_only_bot - 337, bet: straight - 23 - 67, 0/6
-Martingale_bot - 1300, bet: red_black - black - 200, 3/3
-
-Winning number is 30 - red, even, more
-
-External_bids_only_bot - 1031, bet: less_more - more - 206, 4/3
-Straight_only_bot - 281, bet: straight - 34 - 56, 0/7
-Martingale_bot - 1400, bet: red_black - red - 100, 4/3
-
-Winning number is 20 - black, even, more
-
-External_bids_only_bot - 774, bet: red_black - red - 257, 4/4
-Straight_only_bot - 235, bet: straight - 3 - 46, 0/8
-Martingale_bot - 1300, bet: red_black - red - 100, 4/4
-
-Winning number is 10 - black, even, less
-
-External_bids_only_bot - 581, bet: even_odd - odd - 193, 4/5
-Straight_only_bot - 196, bet: straight - 14 - 39, 0/9
-Martingale_bot - 1100, bet: red_black - red - 200, 4/5
-
-Winning number is 4 - black, even, less
-
-External_bids_only_bot - 436, bet: red_black - red - 145, 4/6
-Straight_only_bot - 164, bet: straight - 22 - 32, 0/10
-Martingale_bot - 1500, bet: red_black - black - 400, 5/5
-
-Winning number is 2 - black, even, less
-
-External_bids_only_bot - 545, bet: less_more - less - 109, 5/6
-Straight_only_bot - 1109, bet: straight - 2 - 27, 1/10
-Martingale_bot - 1400, bet: red_black - red - 100, 5/6
 
 Winning number is 22 - black, even, more
 
-External_bids_only_bot - 409, bet: less_more - less - 136, 5/7
-Straight_only_bot - 925, bet: straight - 9 - 184, 1/11
-Martingale_bot - 1200, bet: red_black - red - 200, 5/7
+External_bids_only_bot - 563, bet: less_more - less - 187, 0/2
+Straight_only_bot - 695, bet: straight - 32 - 139, 0/2
+Random_bot - 584, bet: dozen - 3 - 83, 0/2
+Martingale_bot - 700, bet: red_black - red - 200, 0/2
 
-Winning number is 18 - red, even, less
+Winning number is 23 - red, odd, more
 
-External_bids_only_bot - 307, bet: even_odd - odd - 102, 5/8
-Straight_only_bot - 771, bet: straight - 28 - 154, 1/12
-Martingale_bot - 1600, bet: red_black - red - 400, 6/7
+External_bids_only_bot - 423, bet: red_black - black - 140, 0/3
+Straight_only_bot - 580, bet: straight - 27 - 115, 0/3
+Random_bot - 390, bet: less_more - less - 194, 0/3
+Martingale_bot - 1100, bet: red_black - red - 400, 1/2
+
+Winning number is 2 - black, even, less
+
+External_bids_only_bot - 528, bet: less_more - less - 105, 1/3
+Straight_only_bot - 484, bet: straight - 13 - 96, 0/4
+Random_bot - 429, bet: red_black - black - 39, 1/3
+Martingale_bot - 1200, bet: red_black - black - 100, 2/2
+
+Winning number is 20 - black, even, more
+
+External_bids_only_bot - 660, bet: even_odd - even - 132, 2/3
+Straight_only_bot - 404, bet: straight - 22 - 80, 0/5
+Random_bot - 387, bet: column - 3 - 42, 1/4
+Martingale_bot - 1100, bet: red_black - red - 100, 2/3
 
 Winning number is 6 - black, even, less
 
-External_bids_only_bot - 231, bet: less_more - more - 76, 5/9
-Straight_only_bot - 643, bet: straight - 35 - 128, 1/13
-Martingale_bot - 1500, bet: red_black - red - 100, 6/8
+External_bids_only_bot - 825, bet: less_more - less - 165, 3/3
+Straight_only_bot - 337, bet: straight - 3 - 67, 0/6
+Random_bot - 339, bet: straight - 25 - 48, 1/5
+Martingale_bot - 900, bet: red_black - red - 200, 2/4
 
-Winning number is 32 - red, even, more
+Winning number is 7 - red, odd, less
 
-External_bids_only_bot - 174, bet: even_odd - odd - 57, 5/10
-Straight_only_bot - 536, bet: straight - 9 - 107, 1/14
-Martingale_bot - 1700, bet: red_black - red - 200, 7/8
+External_bids_only_bot - 619, bet: less_more - more - 206, 3/4
+Straight_only_bot - 281, bet: straight - 4 - 56, 0/7
+Random_bot - 306, bet: straight - 28 - 33, 1/6
+Martingale_bot - 500, bet: red_black - black - 400, 2/5
 
-Winning number is 30 - red, even, more
+Winning number is 19 - red, odd, more
 
-External_bids_only_bot - 131, bet: less_more - less - 43, 5/11
-Straight_only_bot - 447, bet: straight - 8 - 89, 1/15
-Martingale_bot - 1600, bet: red_black - black - 100, 7/9
+External_bids_only_bot - 465, bet: even_odd - even - 154, 3/5
+Straight_only_bot - 235, bet: straight - 21 - 46, 0/8
+Random_bot - 230, bet: split - [15, 12] - 76, 1/7
+Martingale_bot - 0, bet: red_black - black - 500, 2/6
+Martingale_bot has gone bankrupt and is leaving the game!
 
-Winning number is 28 - black, even, more
+Winning number is 11 - black, odd, less
 
-External_bids_only_bot - 163, bet: even_odd - even - 32, 6/11
-Straight_only_bot - 373, bet: straight - 10 - 74, 1/16
-Martingale_bot - 1800, bet: red_black - black - 200, 8/9
+External_bids_only_bot - 581, bet: even_odd - odd - 116, 4/5
+Straight_only_bot - 196, bet: straight - 31 - 39, 0/9
+Random_bot - 115, bet: dozen - 4 - 115, 1/8
 
-Winning number is 9 - red, odd, less
+Winning number is 14 - red, even, less
 
-External_bids_only_bot - 203, bet: red_black - red - 40, 7/11
-Straight_only_bot - 311, bet: straight - 11 - 62, 1/17
-Martingale_bot - 1900, bet: red_black - red - 100, 9/9
+External_bids_only_bot - 436, bet: red_black - black - 145, 4/6
+Straight_only_bot - 164, bet: straight - 34 - 32, 0/10
+Random_bot - 58, bet: corner - [1, 2, 3, 4] - 57, 1/9
 
-Winning number is 29 - black, odd, more
+Winning number is 16 - red, even, less
 
-External_bids_only_bot - 253, bet: less_more - more - 50, 8/11
-Straight_only_bot - 260, bet: straight - 20 - 51, 1/18
-Martingale_bot - 1800, bet: red_black - red - 100, 9/10
+External_bids_only_bot - 327, bet: even_odd - odd - 109, 4/7
+Straight_only_bot - 137, bet: straight - 0 - 27, 0/11
+Random_bot - 52, bet: even_odd - odd - 6, 1/10
+
+Winning number is 22 - black, even, more
+
+External_bids_only_bot - 246, bet: even_odd - odd - 81, 4/8
+Straight_only_bot - 115, bet: straight - 24 - 22, 0/12
+Random_bot - 39, bet: basket - [0, 1, 2] - 13, 1/11
 
 Winning number is 25 - red, odd, more
 
-External_bids_only_bot - 316, bet: red_black - red - 63, 9/11
-Straight_only_bot - 217, bet: straight - 12 - 43, 1/19
-Martingale_bot - 1600, bet: red_black - black - 200, 9/11
+External_bids_only_bot - 185, bet: even_odd - even - 61, 4/9
+Straight_only_bot - 96, bet: straight - 2 - 19, 0/13
+Random_bot - 20, bet: dozen - 2 - 19, 1/12
+
+Winning number is 33 - black, odd, more
+
+External_bids_only_bot - 139, bet: less_more - less - 46, 4/10
+Straight_only_bot - 80, bet: straight - 18 - 16, 0/14
+Random_bot - 18, bet: first_four - [0, 1, 2, 3] - 2, 1/13
+
+Winning number is 8 - black, even, less
+
+External_bids_only_bot - 105, bet: less_more - more - 34, 4/11
+Straight_only_bot - 67, bet: straight - 21 - 13, 0/15
+Random_bot - 9, bet: corner - [25, 26, 28, 29] - 9, 1/14
+
+Winning number is 2 - black, even, less
+
+External_bids_only_bot - 131, bet: red_black - black - 26, 5/11
+Straight_only_bot - 56, bet: straight - 18 - 11, 0/16
+Random_bot - 8, bet: split - [27, 26] - 1, 1/15
+
+Winning number is 23 - red, odd, more
+
+External_bids_only_bot - 163, bet: red_black - red - 32, 6/11
+Straight_only_bot - 47, bet: straight - 6 - 9, 0/17
+Random_bot - 7, bet: basket - [0, 2, 3] - 1, 1/16
+
+Winning number is 19 - red, odd, more
+
+External_bids_only_bot - 203, bet: red_black - red - 40, 7/11
+Straight_only_bot - 40, bet: straight - 30 - 7, 0/18
+Random_bot - 8, bet: red_black - red - 1, 2/16
+
+Winning number is 28 - black, even, more
+
+External_bids_only_bot - 253, bet: red_black - black - 50, 8/11
+Straight_only_bot - 34, bet: straight - 29 - 6, 0/19
+Random_bot - 7, bet: dozen - 1 - 1, 2/17
+
+Winning number is 34 - red, even, more
+
+External_bids_only_bot - 316, bet: even_odd - even - 63, 9/11
+Straight_only_bot - 29, bet: straight - 27 - 5, 0/20
+Random_bot - 0, bet: straight - 27 - 7, 2/18
+Random_bot has gone bankrupt and is leaving the game!
 This round will not be held. Our game is over

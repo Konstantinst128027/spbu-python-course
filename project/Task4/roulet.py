@@ -1,10 +1,38 @@
 import typing
 import random
+from enum import Enum
 from project.Task4.bet import Bet
 from project.Task4.print_in_txt import print_in_txt
 
 
 class Roulet:
+    class BetType(Enum):
+        STRAIGHT = "straight"
+        SPLIT = "split"
+        STREET = "street"
+        BASKET = "basket"
+        FIRST_FOUR = "first_four"
+        CORNER = "corner"
+        LINE = "line"
+        RED_BLACK = "red_black"
+        EVEN_ODD = "even_odd"
+        DOZEN = "dozen"
+        COLUMN = "column"
+        LESS_MORE = "less_more"
+
+    class ColorType(Enum):
+        RED = "red"
+        BLACK = "black"
+        GREEN = "green"
+
+    class ParityType(Enum):
+        EVEN = "even"
+        ODD = "odd"
+
+    class RangeType(Enum):
+        LESS = "less"
+        MORE = "more"
+
     def __init__(self) -> None:
         """
         Initializes the roulette wheel
@@ -50,26 +78,26 @@ class Roulet:
             33,
             35,
         ]
-        self.coefficients: typing.Dict[str, int] = {
-            "straight": 35,
-            "split": 17,
-            "street": 11,
-            "basket": 11,
-            "first_four": 8,
-            "corner": 8,
-            "line": 5,
-            "red_black": 1,
-            "even_odd": 1,
-            "dozen": 2,
-            "column": 2,
-            "less_more": 1,
+        self.coefficients: typing.Dict[typing.Any, int] = {
+            self.BetType.STRAIGHT: 35,
+            self.BetType.SPLIT: 17,
+            self.BetType.STREET: 11,
+            self.BetType.BASKET: 11,
+            self.BetType.FIRST_FOUR: 8,
+            self.BetType.CORNER: 8,
+            self.BetType.LINE: 5,
+            self.BetType.RED_BLACK: 1,
+            self.BetType.EVEN_ODD: 1,
+            self.BetType.DOZEN: 2,
+            self.BetType.COLUMN: 2,
+            self.BetType.LESS_MORE: 1,
         }
 
     def spin(self) -> int:
         """
         Spins the roulette wheel
         """
-        return random.choice(self.numbers)
+        return random.randint(0, 36)
 
     def get_red_number(self) -> None:
         """
@@ -88,7 +116,7 @@ class Roulet:
         Displays available bet types
         """
         for key, value in self.coefficients.items():
-            print_in_txt(f"name: {key}, coefficients: {value}")
+            print_in_txt(f"name: {key.value}, coefficients: {value}")
 
     def get_color(self, number: int) -> str:
         """
@@ -97,22 +125,22 @@ class Roulet:
         Returns: color
         """
         if number == 0:
-            return "green"
+            return self.ColorType.GREEN.value
         elif number in self.red_numbers:
-            return "red"
+            return self.ColorType.RED.value
         else:
-            return "black"
+            return self.ColorType.BLACK.value
 
     def is_even(self, number: int) -> str:
         """
         Checks if number is even
         Takes: number
-        Returns: 'even' or 'odd'.
+        Returns: 'even' or 'odd'
         """
         if number % 2 == 0:
-            return "even"
+            return self.ParityType.EVEN.value
         else:
-            return "odd"
+            return self.ParityType.ODD.value
 
     def get_less_more(self, number: int) -> str:
         """
@@ -121,9 +149,9 @@ class Roulet:
         Returns: 'less' or 'more'
         """
         if number <= 18:
-            return "less"
+            return self.RangeType.LESS.value
         else:
-            return "more"
+            return self.RangeType.MORE.value
 
     def calculation_of_winning(self, bet: Bet, winning_number: int) -> int:
         """
@@ -131,83 +159,86 @@ class Roulet:
         Takes: bet, winning number
         Returns: amount
         """
-        if bet.bet_name == "straight":
+        if bet.bet_name == self.BetType.STRAIGHT.value:
             if winning_number == bet.value:
-                return self.coefficients["straight"] * bet.amount_of_money
+                return self.coefficients[self.BetType.STRAIGHT] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "split":
+        elif bet.bet_name == self.BetType.SPLIT.value:
             if winning_number in bet.value:
-                return self.coefficients["split"] * bet.amount_of_money
+                return self.coefficients[self.BetType.SPLIT] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "street":
+        elif bet.bet_name == self.BetType.STREET.value:
             if (
                 winning_number
                 in self.numbers[(bet.value - 1) * 3 + 1 : bet.value * 3 + 1]
             ):
-                return self.coefficients["street"] * bet.amount_of_money
+                return self.coefficients[self.BetType.STREET] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "line":
+        elif bet.bet_name == self.BetType.LINE.value:
             if (
                 winning_number
                 in self.numbers[(bet.value - 1) * 6 + 1 : bet.value * 6 + 1]
             ):
-                return self.coefficients["line"] * bet.amount_of_money
+                return self.coefficients[self.BetType.LINE] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "dozen":
+        elif bet.bet_name == self.BetType.DOZEN.value:
             if (
                 winning_number
                 in self.numbers[(bet.value - 1) * 12 + 1 : bet.value * 12 + 1]
             ):
-                return self.coefficients["dozen"] * bet.amount_of_money
+                return self.coefficients[self.BetType.DOZEN] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "column":
+        elif bet.bet_name == self.BetType.COLUMN.value:
             if winning_number in self.numbers[bet.value :: 3]:
-                return self.coefficients["column"] * bet.amount_of_money
+                return self.coefficients[self.BetType.COLUMN] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "corner":
+        elif bet.bet_name == self.BetType.CORNER.value:
             if winning_number in bet.value:
-                return self.coefficients["corner"] * bet.amount_of_money
+                return self.coefficients[self.BetType.CORNER] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "red_black":
+        elif bet.bet_name == self.BetType.RED_BLACK.value:
             if self.get_color(winning_number) == bet.value:
-                return self.coefficients["red_black"] * bet.amount_of_money
+                return self.coefficients[self.BetType.RED_BLACK] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "even_odd":
+        elif bet.bet_name == self.BetType.EVEN_ODD.value:
             if self.is_even(winning_number) == bet.value:
-                return self.coefficients["even_odd"] * bet.amount_of_money
+                return self.coefficients[self.BetType.EVEN_ODD] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "less_more":
+        elif bet.bet_name == self.BetType.LESS_MORE.value:
             if self.get_less_more(winning_number) == bet.value:
-                return self.coefficients["less_more"] * bet.amount_of_money
+                return self.coefficients[self.BetType.LESS_MORE] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
-        elif bet.bet_name == "basket":
+        elif bet.bet_name == self.BetType.BASKET.value:
             if winning_number in bet.value:
-                return self.coefficients["basket"] * bet.amount_of_money
+                return self.coefficients[self.BetType.BASKET] * bet.amount_of_money
+            else:
+                return -bet.amount_of_money
+
+        elif bet.bet_name == self.BetType.FIRST_FOUR.value:
+            if winning_number in bet.value:
+                return self.coefficients[self.BetType.FIRST_FOUR] * bet.amount_of_money
             else:
                 return -bet.amount_of_money
 
         else:
-            if winning_number in bet.value:
-                return self.coefficients["first_four"] * bet.amount_of_money
-            else:
-                return -bet.amount_of_money
+            return -bet.amount_of_money
