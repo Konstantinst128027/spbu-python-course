@@ -37,6 +37,7 @@ class Roulet:
         """
         Initializes the roulette wheel
         """
+        self.numbers: typing.List[int] = list(range(37))
         self.red_numbers: typing.List[int] = [
             1,
             3,
