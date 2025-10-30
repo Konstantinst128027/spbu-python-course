@@ -61,7 +61,7 @@ def smart_args(func: Callable) -> Any:
                 bound_args.arguments[param_name] = default_value.func()
 
             # Isolated Processing
-            if isinstance(param.default, Isolated):
+            if isinstance(default_value, Isolated):
 
                 if param_name not in kwargs:
                     raise ValueError(
