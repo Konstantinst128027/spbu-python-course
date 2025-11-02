@@ -11,10 +11,10 @@ class Hash_Table:
             size: Number of buckets in the hash table
         """
         self.size = size
-        
+
         # Creating a Manager for a shared state
         self.manager: typing.Any = multiprocessing.Manager()
-        
+
         # Creating shared lists and locks
         self.buckets = self.manager.list([self.manager.list() for _ in range(size)])
         self.locks = self.manager.list([self.manager.Lock() for _ in range(size)])
@@ -35,10 +35,10 @@ class Hash_Table:
             value: Value to set
         """
         index = self._hash(key)
-        
+
         with self.locks[index]:
             bucket = self.buckets[index]
-            
+
             for i, (k, v) in enumerate(bucket):
                 if k == key:
                     bucket[i] = (key, value)
@@ -56,7 +56,7 @@ class Hash_Table:
             KeyError: If key is not found
         """
         index = self._hash(key)
-        
+
         with self.locks[index]:
             for k, v in self.buckets[index]:
                 if k == key:
@@ -71,7 +71,7 @@ class Hash_Table:
             KeyError: If key is not found
         """
         index = self._hash(key)
-        
+
         with self.locks[index]:
             bucket = self.buckets[index]
             for i, (k, v) in enumerate(bucket):
@@ -154,7 +154,6 @@ class Hash_Table:
                 for k, v in self.buckets[i]:
                     yield (k, v)
 
-            
     def get(self, key: typing.Any, default: typing.Any = None) -> typing.Any:
         """
         Args:
@@ -181,7 +180,7 @@ class Hash_Table:
             KeyError: If key is not found
         """
         index = self._hash(key)
-        
+
         with self.locks[index]:
             bucket = self.buckets[index]
             for i, (k, v) in enumerate(bucket):
