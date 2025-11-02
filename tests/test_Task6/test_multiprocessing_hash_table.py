@@ -80,3 +80,26 @@ class Test_Hash_Table:
 
         for i in range(10):
             assert ht[f"counter_{i}"] == 100
+
+
+def print_apple_charlotte_recipe():
+    recipe = """
+    Ingredients
+    Eggs - 4 pcs.
+    Sugar - 1 cup (200 g)
+    Flour - 1 cup (160 g)
+    Apples - 4-5 pcs. (better sour varieties)
+    Baking powder - 0.5 tsp.
+    Vanilla sugar - 1 tsp.
+    Butter - for greasing the form
+    Step-by-step preparation
+    1. Prepare the apples: wash, peel and remove the core. Cut the apples into thin slices or cubes. To prevent the apples from turning brown, sprinkle them with lemon juice.
+    2. Beat the eggs with sugar using a mixer on high speed. The mixture should lighten in color, increase in volume, and become fluffy. This process should take 5-7 minutes.
+    3. Add the dry ingredients: sift the flour with the baking powder. Gradually incorporate the flour into the egg mixture, gently mixing with a spatula from the bottom to the top.
+    4. Combine the dough with the apples, reserving a few slices for decoration. Carefully mix the main part of the apples with the dough.
+    5. Bake: grease the pan with butter and sprinkle with flour or semolina. Pour in the dough, spread it out, and decorate with the remaining apples. Bake at 180°C for 30-40 minutes. Check for doneness with a wooden skewer
+    """
+    print(recipe)
+
+
+print_apple_charlotte_recipe()
