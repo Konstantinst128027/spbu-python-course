@@ -22,6 +22,11 @@ class Test_Hash_Table:
         ht["a"] = 1
         ht["b"] = 2
 
+        # get
+        assert ht.get("a") == 1
+        assert ht.get("c") is None
+        assert ht.get("c", "default") == "default"
+
         # pop
         assert ht.pop("a") == 1
         assert "a" not in ht
