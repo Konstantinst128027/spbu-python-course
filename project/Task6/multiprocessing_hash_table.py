@@ -1,9 +1,6 @@
 import typing
 import multiprocessing
 
-manager = multiprocessing.Manager()
-print(type(manager))
-
 
 class Hash_Table:
     """Hash table - dictionary implementation using separate chaining."""
