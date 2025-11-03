@@ -1,6 +1,8 @@
 import typing
 import multiprocessing
 
+manager = multiprocessing.Manager()
+print(type(manager))
 
 class Hash_Table:
     """Hash table - dictionary implementation using separate chaining."""
@@ -13,7 +15,7 @@ class Hash_Table:
         self.size = size
 
         # Creating a Manager for a shared state
-        self.manager: typing.Any = multiprocessing.Manager()
+        self.manager: multiprocessing.managers.SyncManager = multiprocessing.Manager()
 
         # Creating shared lists and locks
         self.buckets = self.manager.list([self.manager.list() for _ in range(size)])
@@ -57,11 +59,10 @@ class Hash_Table:
         """
         index = self._hash(key)
 
-        with self.locks[index]:
-            for k, v in self.buckets[index]:
-                if k == key:
-                    return v
-            raise KeyError(key)
+        for k, v in self.buckets[index]:
+            if k == key:
+                return v
+        raise KeyError(key)
 
     def __delitem__(self, key: typing.Any) -> None:
         """
@@ -88,11 +89,10 @@ class Hash_Table:
             bool: True if key exists, False otherwise
         """
         index = self._hash(key)
-        with self.locks[index]:
-            for k, v in self.buckets[index]:
-                if k == key:
-                    return True
-            return False
+        for k, v in self.buckets[index]:
+            if k == key:
+                return True
+        return False
 
     def __len__(self) -> int:
         """
